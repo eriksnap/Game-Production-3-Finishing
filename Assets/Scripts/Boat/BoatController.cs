@@ -80,8 +80,9 @@ public class BoatController : MonoBehaviour
     public void SetEliminated()
     {
         isEliminated = true;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        rb.isKinematic = true;
+            rb.isKinematic = false; // temporarily ensure it's not kinematic
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true; // now set kinematic
     }
 }

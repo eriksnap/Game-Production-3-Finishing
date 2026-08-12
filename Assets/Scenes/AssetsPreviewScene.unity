@@ -554,30 +554,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ebb745f6-1332-4c5c-8744-b4fe3e3aca26
     m_ActionName: 'Player1/Jab[/Keyboard/q]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f339916-07de-4ef4-8c93-996fab745378
-    m_ActionName: 'Player2/Movement[/Keyboard/i,/Keyboard/k,/Keyboard/j,/Keyboard/l]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e7ff47e1-db4f-4808-9c61-cba73037fac7
-    m_ActionName: 'Player2/Steer[/Keyboard/j,/Keyboard/l]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 81412b2e-6aea-490f-9e34-ec70ac8b37cb
-    m_ActionName: 'Player2/Jump[/Keyboard/rightCtrl]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c4d8f1fa-1a90-4c65-b6f2-f52c6e209ca7
-    m_ActionName: 'Player2/Interact[/Keyboard/o]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a1419990-9e41-4217-b4d4-839e05c98dc6
-    m_ActionName: 'Player2/Grab[/Keyboard/rightShift]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9606680e-8914-4540-87ec-07187010b4f9
-    m_ActionName: 'Player2/Jab[/Keyboard/u]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -904,6 +880,119 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &418714171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418714175}
+  - component: {fileID: 418714174}
+  - component: {fileID: 418714173}
+  - component: {fileID: 418714172}
+  m_Layer: 0
+  m_Name: Plane (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &418714172
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418714171}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &418714173
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418714171}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 867ec64eba6038b4e95709fa94008027, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &418714174
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418714171}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &418714175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418714171}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 143.08958, y: -0, z: 3.75845}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &474424731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,30 +1234,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ebb745f6-1332-4c5c-8744-b4fe3e3aca26
     m_ActionName: 'Player1/Jab[/Keyboard/q]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f339916-07de-4ef4-8c93-996fab745378
-    m_ActionName: 'Player2/Movement[/Keyboard/i,/Keyboard/k,/Keyboard/j,/Keyboard/l]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e7ff47e1-db4f-4808-9c61-cba73037fac7
-    m_ActionName: 'Player2/Steer[/Keyboard/j,/Keyboard/l]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 81412b2e-6aea-490f-9e34-ec70ac8b37cb
-    m_ActionName: 'Player2/Jump[/Keyboard/rightCtrl]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c4d8f1fa-1a90-4c65-b6f2-f52c6e209ca7
-    m_ActionName: 'Player2/Interact[/Keyboard/o]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a1419990-9e41-4217-b4d4-839e05c98dc6
-    m_ActionName: 'Player2/Grab[/Keyboard/rightShift]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9606680e-8914-4540-87ec-07187010b4f9
-    m_ActionName: 'Player2/Jab[/Keyboard/u]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -1439,30 +1504,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ebb745f6-1332-4c5c-8744-b4fe3e3aca26
     m_ActionName: 'Player1/Jab[/Keyboard/q]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f339916-07de-4ef4-8c93-996fab745378
-    m_ActionName: 'Player2/Movement[/Keyboard/i,/Keyboard/k,/Keyboard/j,/Keyboard/l]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e7ff47e1-db4f-4808-9c61-cba73037fac7
-    m_ActionName: 'Player2/Steer[/Keyboard/j,/Keyboard/l]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 81412b2e-6aea-490f-9e34-ec70ac8b37cb
-    m_ActionName: 'Player2/Jump[/Keyboard/rightCtrl]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c4d8f1fa-1a90-4c65-b6f2-f52c6e209ca7
-    m_ActionName: 'Player2/Interact[/Keyboard/o]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a1419990-9e41-4217-b4d4-839e05c98dc6
-    m_ActionName: 'Player2/Grab[/Keyboard/rightShift]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9606680e-8914-4540-87ec-07187010b4f9
-    m_ActionName: 'Player2/Jab[/Keyboard/u]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -2565,3 +2606,4 @@ SceneRoots:
   - {fileID: 361930175}
   - {fileID: 2142311225}
   - {fileID: 1321112482}
+  - {fileID: 418714175}
