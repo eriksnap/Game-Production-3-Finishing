@@ -7,5 +7,5 @@ public class LobbyData
     public int playerIndex;
     public GameObject selectedBoatPrefab;
     public GameObject selectedCharacterPrefab;
-    public InputDevice assignedDevice;
+    [System.NonSerialized] public InputDevice assignedDevice;
 }

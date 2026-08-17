@@ -11,10 +11,12 @@ public class InputDebugger : MonoBehaviour
             return;
         }
 
-        float thrust = Gamepad.current.leftStick.y.ReadValue();
+        float thrust = -Gamepad.current.leftTrigger.ReadValue() + Gamepad.current.rightTrigger.ReadValue();
         float steer = Gamepad.current.leftStick.x.ReadValue();
 
-        if (thrust != 0 || steer != 0)
+        /*if (thrust != 0 || steer != 0)
+        {
             Debug.Log($"Thrust: {thrust} | Steer: {steer}");
+        } */ //Used to confirm control values for the boat
     }
 }

@@ -56,7 +56,8 @@ public class BoatController : MonoBehaviour
     private void HandleSteering()
     {
         float speedFactor = Mathf.Clamp01(rb.linearVelocity.magnitude / 3f);
-        float torque = inputVector.x * steerTorque * speedFactor;
+        float steerDirection = inputVector.y < 0 ? -inputVector.x : inputVector.x;
+        float torque = steerDirection * steerTorque * speedFactor;
         rb.AddTorque(Vector3.up * torque, ForceMode.Acceleration);
     }
 
