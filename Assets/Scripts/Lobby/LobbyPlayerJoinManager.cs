@@ -9,14 +9,13 @@ public class LobbyPlayerJoinManager : MonoBehaviour
     [Header("Player Setup")]
     public GameObject lobbyCharacterPrefab;
     public Transform[] spawnPoints;
-    public GameObject playerInputPrefab;
 
     [Header("Default Selections")]
     public GameObject defaultBoatPrefab;
     public GameObject defaultCharacterPrefab;
 
     private List<LobbyPlayerController> joinedPlayers = new List<LobbyPlayerController>();
-    private PlayerInputManager playerInputManager;
+    private List<InputDevice> joinedDevices = new List<InputDevice>();
 
     private void Awake()
     {
@@ -26,66 +25,76 @@ public class LobbyPlayerJoinManager : MonoBehaviour
             return;
         }
         Instance = this;
-
-        playerInputManager = GetComponent<PlayerInputManager>();
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        playerInputManager.onPlayerJoined += OnPlayerJoined;
+        foreach (var gamepad in Gamepad.all)
+        {
+            if (gamepad.buttonSouth.wasPressedThisFrame && !joinedDevices.Contains(gamepad))
+            {
+                JoinPlayer(gamepad);
+            }
+        }
     }
 
-    private void OnDisable()
-    {
-        playerInputManager.onPlayerJoined -= OnPlayerJoined;
-    }
-
-    private void OnPlayerJoined(PlayerInput playerInput)
+    private void JoinPlayer(InputDevice device)
     {
         int index = joinedPlayers.Count;
 
         if (index >= spawnPoints.Length)
         {
-            Debug.LogWarning("No spawn point available for this player.");
+            Debug.LogWarning("No spawn point available.");
             return;
         }
 
-        // Get the controller component
-        LobbyPlayerController controller = playerInput.GetComponent<LobbyPlayerController>();
-        if (controller == null)
+        if (index >= 4)
         {
-            Debug.LogWarning("LobbyPlayerController not found on joined player.");
+            Debug.LogWarning("Max players reached.");
             return;
         }
 
-        // Set defaults
-        controller.PlayerIndex = index;
-        controller.SelectedBoatPrefab = defaultBoatPrefab;
-        controller.SelectedCharacterPrefab = defaultCharacterPrefab;
+        // Spawn character
+        GameObject playerObject = Instantiate(lobbyCharacterPrefab,
+            spawnPoints[index].position,
+            spawnPoints[index].rotation);
 
-        // Move to spawn point
-        playerInput.transform.position = spawnPoints[index].position;
-        playerInput.transform.rotation = spawnPoints[index].rotation;
+        playerObject.name = $"Player{index + 1}_Character";
 
+        // Assign PlayerInput device
+        PlayerInput playerInput = playerObject.GetComponent<PlayerInput>();
+        if (playerInput != null)
+            playerInput.SwitchCurrentControlScheme(device);
+
+        // Set up controller
+        LobbyPlayerController controller = playerObject.GetComponent<LobbyPlayerController>();
+        if (controller != null)
+        {
+            controller.PlayerIndex = index;
+            controller.SelectedBoatPrefab = defaultBoatPrefab;
+            controller.SelectedCharacterPrefab = defaultCharacterPrefab;
+        }
+        else
+        {
+            Debug.LogWarning($"LobbyPlayerController not found on {playerObject.name}");
+        }
+
+        joinedDevices.Add(device);
         joinedPlayers.Add(controller);
 
-        // Notify UI
+        // Notify UI and camera
         LobbyUI.Instance?.OnPlayerJoined(index);
+        CameraManager.Instance?.AssignCamera(playerObject, index);
 
-        // Notify camera manager to assign camera
-        CameraManager.Instance?.AssignCamera(playerInput.gameObject, index);
-
-        Debug.Log($"Player {index + 1} joined the lobby.");
+        Debug.Log($"Player {index + 1} joined using {device.displayName}");
     }
 
     public List<LobbyPlayerController> GetJoinedPlayers() => joinedPlayers;
-
     public int GetJoinedPlayerCount() => joinedPlayers.Count;
 
     public void BuildLobbyData()
     {
         List<LobbyData> dataList = new List<LobbyData>();
-
         for (int i = 0; i < joinedPlayers.Count; i++)
         {
             LobbyData data = new LobbyData
@@ -93,11 +102,10 @@ public class LobbyPlayerJoinManager : MonoBehaviour
                 playerIndex = i,
                 selectedBoatPrefab = joinedPlayers[i].SelectedBoatPrefab,
                 selectedCharacterPrefab = joinedPlayers[i].SelectedCharacterPrefab,
-                assignedDevice = joinedPlayers[i].GetComponent<PlayerInput>().devices[0]
+                assignedDevice = joinedDevices[i]
             };
             dataList.Add(data);
         }
-
         LobbyManager.SetPlayerData(dataList);
     }
 }

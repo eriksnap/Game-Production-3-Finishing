@@ -12,4 +12,4 @@ EditorBuildSettings:
     path: Assets/Scenes/LobbyScene.unity
     guid: 15b9a3e5da1931f4abd7c5e0bee2bcc8
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 95c928955ae1d4e4fae323d30dffc4ca, type: 3}

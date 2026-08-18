@@ -36,8 +36,8 @@ public class LobbyUI : MonoBehaviour
     private void Start()
     {
         InitialiseSlots();
-        countdownPanel?.SetActive(false);
-        joinPromptText?.gameObject.SetActive(true);
+        if (countdownPanel != null) countdownPanel.SetActive(false);
+        if (joinPromptText != null) joinPromptText.gameObject.SetActive(true);
     }
 
     private void InitialiseSlots()

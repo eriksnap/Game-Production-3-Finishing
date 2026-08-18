@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 public class CameraManager : MonoBehaviour
@@ -50,8 +51,8 @@ public class CameraManager : MonoBehaviour
 
         // Link Cinemachine camera to this player's Unity camera
         var brain = cameraObject.AddComponent<CinemachineBrain>();
-        brain.ChannelMask = 1 << playerIndex;
-        cmCam.OutputChannel = 1 << playerIndex;
+        brain.ChannelMask = (OutputChannels)(1 << playerIndex);
+        cmCam.OutputChannel = (OutputChannels)(1 << playerIndex);
 
         // Set third person offset
         var composer = cmCam.GetComponent<CinemachineFollow>();
@@ -61,6 +62,11 @@ public class CameraManager : MonoBehaviour
         }
 
         playerCameras.Add(cam);
+        
+        PlayerInput playerInput = playerObject.GetComponent<PlayerInput>();
+        if (playerInput != null)
+            playerInput.camera = cam;
+        
         cinemachineCameras.Add(cmCam);
 
         UpdateSplitScreen();
