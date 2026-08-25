@@ -5960,7 +5960,7 @@ MonoBehaviour:
   - {fileID: 1735976455}
   - {fileID: 1246883278}
   - {fileID: 2065906112}
-  defaultBoatPrefab: {fileID: 709212194831782622, guid: 54742f3d1d6f4784ca60677b192ecb0f, type: 3}
+  defaultBoatPrefab: {fileID: 316142910146444212, guid: 938ad5ca18f221648a88c34d55261311, type: 3}
 --- !u!4 &1368640701
 Transform:
   m_ObjectHideFlags: 0
@@ -5988,7 +5988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19c52a9d8bae544a943549755b42c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestInit
-  boatPrefab: {fileID: 709212194831782622, guid: 54742f3d1d6f4784ca60677b192ecb0f, type: 3}
+  boatPrefab: {fileID: 316142910146444212, guid: 938ad5ca18f221648a88c34d55261311, type: 3}
   playerCount: 2
 --- !u!65 &1368640703
 BoxCollider:
