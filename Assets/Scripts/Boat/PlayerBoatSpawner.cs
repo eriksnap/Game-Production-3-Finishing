@@ -54,7 +54,8 @@ public class PlayerBoatSpawner : MonoBehaviour
             BoatHealth health = boat.GetComponent<BoatHealth>();
             if (health != null)
             {
-                int playerIndex = i; // capture for lambda
+                health.SetPlayerIndex(i);
+                int playerIndex = i;
                 health.onEliminated.AddListener(() =>
                     gameStateManager.OnPlayerEliminated(playerIndex));
             }

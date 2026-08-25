@@ -34,9 +34,8 @@ public class GameStateManager : MonoBehaviour
         eliminatedPlayers.Clear();
         winnerIndex = -1;
 
-        // Disable all boat controllers until countdown finishes
+        gameHUD?.InitialiseHUD(spawnedBoats.Count);
         SetAllBoatsActive(false);
-
         StartCoroutine(CountdownRoutine());
     }
 

@@ -5,7 +5,7 @@ public class BoatHealth : MonoBehaviour
 {
     [Header("Health Settings")]
     public float maxHP = 100f;
-    public float minImpactForce = 3f; // impacts below this are ignored
+    public float minImpactForce = 3f;
     public float damageMultiplier = 10f;
 
     [Header("Events")]
@@ -13,17 +13,21 @@ public class BoatHealth : MonoBehaviour
 
     private float currentHP;
     private bool isEliminated = false;
+    private int playerIndex = -1;
 
     private void Awake()
     {
         currentHP = maxHP;
     }
 
+    public void SetPlayerIndex(int index)
+    {
+        playerIndex = index;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (isEliminated) return;
-
-        //Only take damage from other boats
         if (!collision.gameObject.CompareTag("Boat")) return;
 
         float impactForce = collision.relativeVelocity.magnitude;
@@ -38,10 +42,12 @@ public class BoatHealth : MonoBehaviour
         currentHP -= damage;
         currentHP = Mathf.Clamp(currentHP, 0f, maxHP);
 
+        // Update HUD
+        if (playerIndex >= 0)
+            FindAnyObjectByType<GameHUD>()?.UpdateHP(playerIndex, currentHP, maxHP);
+
         if (currentHP <= 0f)
-        {
             Eliminate();
-        }
     }
 
     private void Eliminate()
@@ -49,11 +55,13 @@ public class BoatHealth : MonoBehaviour
         if (isEliminated) return;
         isEliminated = true;
 
+        if (playerIndex >= 0)
+            FindAnyObjectByType<GameHUD>()?.ShowEliminatedOnHUD(playerIndex);
+
         GetComponent<BoatController>()?.SetEliminated();
         onEliminated?.Invoke();
     }
 
-    // Called externally by the out-of-bounds trigger
     public void EliminateByBoundary()
     {
         Eliminate();
