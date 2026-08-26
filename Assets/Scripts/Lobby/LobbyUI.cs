@@ -62,7 +62,7 @@ public class LobbyUI : MonoBehaviour
         if (playerReadyIndicators[playerIndex] != null)
             playerReadyIndicators[playerIndex].color = notReadyColor;
 
-        // Hide join prompt once at least one player joins
+        //Hide join prompt once at least one player joins
         joinPromptText?.gameObject.SetActive(false);
     }
 

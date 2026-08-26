@@ -30,10 +30,21 @@ public class BoatHealth : MonoBehaviour
         if (isEliminated) return;
         if (!collision.gameObject.CompareTag("Boat")) return;
 
-        float impactForce = collision.relativeVelocity.magnitude;
-        if (impactForce < minImpactForce) return;
+        Rigidbody myRb = GetComponent<Rigidbody>();
+        Rigidbody otherRb = collision.gameObject.GetComponent<Rigidbody>();
+        if (otherRb == null) return;
 
-        float damage = impactForce * damageMultiplier;
+        float mySpeed = myRb.linearVelocity.magnitude;
+        float otherSpeed = otherRb.linearVelocity.magnitude;
+
+        if (mySpeed >= otherSpeed) return;
+
+        float damage = otherSpeed * damageMultiplier;
+        if (damage < minImpactForce * damageMultiplier) return;
+
+        //Play collision VFX at the contact point
+        VFXManager.Instance?.PlayCollisionSplash(collision.contacts[0].point);
+
         TakeDamage(damage);
     }
 
@@ -42,7 +53,7 @@ public class BoatHealth : MonoBehaviour
         currentHP -= damage;
         currentHP = Mathf.Clamp(currentHP, 0f, maxHP);
 
-        // Update HUD
+        //Update the HUD
         if (playerIndex >= 0)
             FindAnyObjectByType<GameHUD>()?.UpdateHP(playerIndex, currentHP, maxHP);
 
@@ -54,6 +65,9 @@ public class BoatHealth : MonoBehaviour
     {
         if (isEliminated) return;
         isEliminated = true;
+
+        //Play death VFX
+        VFXManager.Instance?.PlayDeathSplash(transform.position);
 
         if (playerIndex >= 0)
             FindAnyObjectByType<GameHUD>()?.ShowEliminatedOnHUD(playerIndex);

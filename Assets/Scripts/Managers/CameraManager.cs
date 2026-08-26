@@ -11,13 +11,13 @@ public class CameraManager : MonoBehaviour
     public CinemachineCamera cinemachineCameraPrefab;
 
     [Header("Split Screen Rects")]
-    // These define the screen area each camera renders to
+    //These define the screen area each camera renders to
     private readonly Rect[] splitScreenRects = new Rect[]
     {
-        new Rect(0f, 0.5f, 0.5f, 0.5f),   // Player 1 - top left
-        new Rect(0.5f, 0.5f, 0.5f, 0.5f), // Player 2 - top right
-        new Rect(0f, 0f, 0.5f, 0.5f),     // Player 3 - bottom left
-        new Rect(0.5f, 0f, 0.5f, 0.5f)    // Player 4 - bottom right
+        new Rect(0f, 0.5f, 0.5f, 0.5f),   // Player 1
+        new Rect(0.5f, 0.5f, 0.5f, 0.5f), // Player 2
+        new Rect(0f, 0f, 0.5f, 0.5f),     // Player 3
+        new Rect(0.5f, 0f, 0.5f, 0.5f)    // Player 4
     };
 
     private List<Camera> playerCameras = new List<Camera>();
@@ -35,26 +35,26 @@ public class CameraManager : MonoBehaviour
 
     public void AssignCamera(GameObject playerObject, int playerIndex)
     {
-        // Create a new Unity Camera
+        //Create a new Unity Camera
         GameObject cameraObject = new GameObject($"Player{playerIndex + 1}_Camera");
         Camera cam = cameraObject.AddComponent<Camera>();
         cam.rect = GetSplitRect(playerIndex);
         cam.depth = playerIndex;
 
-        // Create Cinemachine camera
+        //Create Cinemachine camera
         CinemachineCamera cmCam = Instantiate(cinemachineCameraPrefab);
         cmCam.name = $"Player{playerIndex + 1}_CinemachineCamera";
 
-        // Set follow and look at targets
+        //Set follow and look at targets
         cmCam.Follow = playerObject.transform;
         cmCam.LookAt = playerObject.transform;
 
-        // Link Cinemachine camera to this player's Unity camera
+        //Link Cinemachine camera to this player's Unity camera
         var brain = cameraObject.AddComponent<CinemachineBrain>();
         brain.ChannelMask = (OutputChannels)(1 << playerIndex);
         cmCam.OutputChannel = (OutputChannels)(1 << playerIndex);
 
-        // Set third person offset
+        //Set third person offset
         var composer = cmCam.GetComponent<CinemachineFollow>();
         if (composer != null)
         {
@@ -71,7 +71,7 @@ public class CameraManager : MonoBehaviour
 
         UpdateSplitScreen();
 
-        // Assign camera transform to player controller
+        //Assign camera transform to player controller
         LobbyPlayerController controller = playerObject.GetComponent<LobbyPlayerController>();
         if (controller != null)
             controller.cameraTransform = cameraObject.transform;
@@ -90,13 +90,13 @@ public class CameraManager : MonoBehaviour
     private Rect GetSplitRect(int index, int totalPlayers = 1)
     {
         if (totalPlayers == 1)
-            return new Rect(0f, 0f, 1f, 1f); // Full screen for single player
+            return new Rect(0f, 0f, 1f, 1f); // Fullscreen for single player
 
         if (totalPlayers == 2)
         {
             return index == 0
-                ? new Rect(0f, 0f, 0.5f, 1f)   // Left half
-                : new Rect(0.5f, 0f, 0.5f, 1f); // Right half
+                ? new Rect(0f, 0f, 0.5f, 1f)   //Left half
+                : new Rect(0.5f, 0f, 0.5f, 1f); //Right half
         }
 
         // 3 or 4 players - quad split

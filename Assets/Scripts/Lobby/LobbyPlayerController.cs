@@ -30,7 +30,7 @@ public class LobbyPlayerController : MonoBehaviour
         if (isGrounded && velocity.y < 0)
             velocity.y = -2f;
 
-        // Move relative to camera direction
+        //Move relative to camera direction
         Vector3 move = Vector3.zero;
         if (cameraTransform != null)
         {
@@ -49,14 +49,14 @@ public class LobbyPlayerController : MonoBehaviour
 
         characterController.Move(move * moveSpeed * Time.deltaTime);
 
-        // Rotate to face movement direction
+        //Rotate to face movement direction
         if (move.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
 
-        // Jumping
+        //Jumping
         if (jumpPressed && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
@@ -67,7 +67,7 @@ public class LobbyPlayerController : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    // Wired via PlayerInput Unity Events - Lobby Action Map
+    //Wired via PlayerInput Unity Events - Lobby Action Map
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -93,7 +93,7 @@ public class LobbyPlayerController : MonoBehaviour
 
     private void TryInteract()
     {
-        // Sphere cast to find nearby selection stations
+        //Sphere cast to find nearby selection stations
         Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
         foreach (Collider hit in hits)
         {

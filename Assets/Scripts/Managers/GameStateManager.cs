@@ -69,7 +69,7 @@ public class GameStateManager : MonoBehaviour
         eliminatedPlayers.Add(playerIndex);
         gameHUD?.ShowEliminatedMessage(playerIndex);
 
-        // Disable the eliminated boat's controller
+        //Disable the eliminated boat's controller
         GameObject eliminatedBoat = activePlayers[playerIndex];
         eliminatedBoat?.GetComponent<BoatController>()?.SetEliminated();
 
@@ -95,7 +95,7 @@ public class GameStateManager : MonoBehaviour
         }
         else if (remaining.Count == 0)
         {
-            // All eliminated simultaneously — draw
+            //All eliminated simultaneously — draw
             winnerIndex = -1;
             StartCoroutine(GameOverRoutine());
         }

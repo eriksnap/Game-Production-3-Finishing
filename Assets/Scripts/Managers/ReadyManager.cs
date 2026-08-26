@@ -57,7 +57,7 @@ public class ReadyManager : MonoBehaviour
             }
         }
 
-        // Also check that all joined players have a ready state registered
+        //Also check that all joined players have a ready state registered
         if (readyStates.Count < joinedCount)
             allReady = false;
 

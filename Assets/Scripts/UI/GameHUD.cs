@@ -28,13 +28,24 @@ public class GameHUD : MonoBehaviour
     {
         for (int i = 0; i < hpBars.Length; i++)
         {
+            bool active = i < playerCount;
+
             if (hpBars[i] != null)
-                hpBars[i].gameObject.SetActive(i < playerCount);
+                hpBars[i].gameObject.SetActive(active);
 
             if (playerLabels[i] != null)
             {
-                playerLabels[i].gameObject.SetActive(i < playerCount);
+                playerLabels[i].gameObject.SetActive(active);
                 playerLabels[i].text = $"Player {i + 1}";
+                playerLabels[i].color = PlayerColours.Get(i);
+            }
+
+            //Colour the HP bar fill to match player colour
+            if (hpBars[i] != null)
+            {
+                Image fill = hpBars[i].fillRect.GetComponent<Image>();
+                if (fill != null)
+                    fill.color = PlayerColours.Get(i);
             }
         }
     }
@@ -48,7 +59,7 @@ public class GameHUD : MonoBehaviour
         hpBars[playerIndex].value = currentHP;
         hpBars[playerIndex].maxValue = maxHP;
 
-        // Change colour green to red based on HP
+        //Change colour green to red based on HP
         Image fill = hpBars[playerIndex].fillRect.GetComponent<Image>();
         if (fill != null)
             fill.color = Color.Lerp(Color.red, Color.green, fraction);
@@ -58,7 +69,7 @@ public class GameHUD : MonoBehaviour
     {
         if (playerIndex >= playerLabels.Length) return;
         if (playerLabels[playerIndex] != null)
-            playerLabels[playerIndex].text = $"Player {playerIndex + 1} - DEAD";
+            playerLabels[playerIndex].text = $"Player {playerIndex + 1} DEAD";
 
         if (hpBars[playerIndex] != null)
         {
@@ -99,6 +110,7 @@ public class GameHUD : MonoBehaviour
         if (gameOverText == null) return;
         gameOverText.gameObject.SetActive(true);
         gameOverText.text = $"Player {playerIndex + 1} Wins!";
+        gameOverText.color = PlayerColours.Get(playerIndex);
     }
 
     public void ShowDraw()

@@ -39,18 +39,27 @@ public class PlayerBoatSpawner : MonoBehaviour
                 ? players[i].selectedBoatPrefab
                 : defaultBoatPrefab;
 
-            // Spawn the boat
+            //Spawn the boat
             GameObject boat = Instantiate(prefabToSpawn, spawnPoints[i].position, spawnPoints[i].rotation);
             boat.name = $"Player{i + 1}_Boat";
 
-            // Assign the correct gamepad via PlayerInput
+            //Apply the player's colour to boat
+            Renderer[] renderers = boat.GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in renderers)
+            {
+                foreach (Material mat in r.materials)
+                {
+                    mat.color = PlayerColours.Get(i);
+                }
+            }
+
+            //Assigns the correct gamepad via PlayerInput
             PlayerInput playerInput = boat.GetComponent<PlayerInput>();
             if (playerInput != null && players[i].assignedDevice != null)
             {
                 playerInput.SwitchCurrentControlScheme(players[i].assignedDevice);
             }
 
-            // Wire up elimination event
             BoatHealth health = boat.GetComponent<BoatHealth>();
             if (health != null)
             {
@@ -60,7 +69,7 @@ public class PlayerBoatSpawner : MonoBehaviour
                     gameStateManager.OnPlayerEliminated(playerIndex));
             }
 
-            // Swap character model if selected
+            //Swap character model if selected
             BoatCharacterSlot characterSlot = boat.GetComponentInChildren<BoatCharacterSlot>();
             if (characterSlot != null && players[i].selectedCharacterPrefab != null)
             {

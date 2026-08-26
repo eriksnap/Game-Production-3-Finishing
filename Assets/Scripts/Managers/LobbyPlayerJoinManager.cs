@@ -54,19 +54,19 @@ public class LobbyPlayerJoinManager : MonoBehaviour
             return;
         }
 
-        // Spawn character
+        //Spawn character
         GameObject playerObject = Instantiate(lobbyCharacterPrefab,
             spawnPoints[index].position,
             spawnPoints[index].rotation);
 
         playerObject.name = $"Player{index + 1}_Character";
 
-        // Assign PlayerInput device
+        //Assign PlayerInput device
         PlayerInput playerInput = playerObject.GetComponent<PlayerInput>();
         if (playerInput != null)
             playerInput.SwitchCurrentControlScheme(device);
 
-        // Set up controller
+        //Set up controller
         LobbyPlayerController controller = playerObject.GetComponent<LobbyPlayerController>();
         if (controller != null)
         {
@@ -82,7 +82,7 @@ public class LobbyPlayerJoinManager : MonoBehaviour
         joinedDevices.Add(device);
         joinedPlayers.Add(controller);
 
-        // Notify UI and camera
+        //Notify UI and camera
         LobbyUI.Instance?.OnPlayerJoined(index);
         CameraManager.Instance?.AssignCamera(playerObject, index);
 

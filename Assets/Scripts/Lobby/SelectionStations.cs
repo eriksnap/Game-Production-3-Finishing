@@ -25,10 +25,10 @@ public class SelectionStation : MonoBehaviour
 
     public void Interact(LobbyPlayerController player)
     {
-        // Cycle to next option
+        //Cycle to next option
         currentIndex = (currentIndex + 1) % options.Length;
 
-        // Assign selection to player
+        //Assign selection to player
         if (stationType == StationType.Character)
             player.SelectedCharacterPrefab = options[currentIndex];
         else

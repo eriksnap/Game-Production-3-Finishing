@@ -35,7 +35,7 @@ public class LobbyManager : MonoBehaviour
         playerDataList.Clear();
     }
 
-    // Temporary: for testing in game scene without going through lobby
+    //Temporary: for testing in game scene without going through lobby
     public static void SetupTestPlayers(GameObject boatPrefab, int playerCount)
     {
         playerDataList.Clear();
@@ -49,7 +49,7 @@ public class LobbyManager : MonoBehaviour
                 selectedCharacterPrefab = null,
                 assignedDevice = i == 0 && Gamepad.all.Count > 0
                     ? Gamepad.all[0]
-                    : null // Player 2 gets null, falls back to keyboard
+                    : null //Player 2 gets null, falls back to keyboard
             };
 
             playerDataList.Add(data);
