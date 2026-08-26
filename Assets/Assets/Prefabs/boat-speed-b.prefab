@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6639941830203134284}
   - component: {fileID: 5410317951212182236}
   - component: {fileID: -7839477832653228567}
+  - component: {fileID: -1814474111414622871}
   m_Layer: 0
   m_Name: boat-speed-b
   m_TagString: Boat
@@ -33,8 +34,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.5, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -110,7 +111,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -191,3 +192,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1566f0920c5f489c90099c23c9d4f341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoatCharacterSlot
+--- !u!114 &-1814474111414622871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514245441825870664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 95c928955ae1d4e4fae323d30dffc4ca, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 835287ae-951c-4aa4-8ad4-578685c4e613
+    m_ActionName: Lobby/Move
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 11001a1c-742c-4447-aab2-5794d0ac3f30
+    m_ActionName: Lobby/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2dc2f0c7-109f-44b5-a4c2-8ca625acaaff
+    m_ActionName: Lobby/Join
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 941c9674-e7c8-4b34-9117-4ce63133d063
+    m_ActionName: Lobby/Interact
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e52ade74-6388-4467-9015-2ed9aeeeeeae
+    m_ActionName: Lobby/Ready
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5410317951212182236}
+        m_TargetAssemblyTypeName: BoatController, Assembly-CSharp
+        m_MethodName: OnThrust
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 07f303d0-1127-4e85-a2f2-fa01241f50b6
+    m_ActionName: 'Boat/Thrust[/Keyboard/s,/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5410317951212182236}
+        m_TargetAssemblyTypeName: BoatController, Assembly-CSharp
+        m_MethodName: OnSteer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 833aea88-0243-49bf-9c13-73337ba56d23
+    m_ActionName: 'Boat/Steer[/Keyboard/a,/Keyboard/d]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

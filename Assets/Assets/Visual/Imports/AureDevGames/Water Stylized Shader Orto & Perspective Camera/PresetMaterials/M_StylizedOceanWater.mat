@@ -109,12 +109,12 @@ Material:
     - _HorizonDistance: 78
     - _Hue: 1
     - _IntersectionFoamBlend: 1.09
-    - _IntersectionFoamCutoff: 3.57
-    - _IntersectionFoamDepth: 0.42
+    - _IntersectionFoamCutoff: 4.08
+    - _IntersectionFoamDepth: 0.3
     - _IntersectionFoamDirection: 0.65
-    - _IntersectionFoamFade: 0.54
+    - _IntersectionFoamFade: 0.5
     - _IntersectionFoamSpeed: 0.16
-    - _IntersectionFoamTiling: 1.27
+    - _IntersectionFoamTiling: 0.65
     - _LightingHardness: 0.39
     - _LightingSmoothness: 12.34
     - _NormalScale: 1.61
@@ -128,7 +128,7 @@ Material:
     - _REFLECTIONS: 0
     - _ReflectionBlend: 0.594
     - _ReflectionDistortion: 0.38
-    - _RefractionScale: 10
+    - _RefractionScale: 6.84
     - _RefractionSpeed: 0.01
     - _RefractionStrength: 0
     - _RippleStrength: 83.62
