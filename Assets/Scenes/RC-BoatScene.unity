@@ -7101,7 +7101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestInit
   boatPrefab: {fileID: 1514245441825870664, guid: 836d6688115d34747871645369d4dccb, type: 3}
-  playerCount: 4
+  playerCount: 2
 --- !u!65 &1368640703
 BoxCollider:
   m_ObjectHideFlags: 0
