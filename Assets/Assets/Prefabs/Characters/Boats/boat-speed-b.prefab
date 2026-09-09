@@ -271,7 +271,7 @@ MonoBehaviour:
     m_ActionId: 833aea88-0243-49bf-9c13-73337ba56d23
     m_ActionName: 'Boat/Steer[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Controller
   m_DefaultActionMap: Boat
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

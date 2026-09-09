@@ -7068,8 +7068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBoatSpawner
   spawnPoints:
-  - {fileID: 525279931}
   - {fileID: 1735976455}
+  - {fileID: 525279931}
   - {fileID: 1246883278}
   - {fileID: 2065906112}
   defaultBoatPrefab: {fileID: 1514245441825870664, guid: 836d6688115d34747871645369d4dccb, type: 3}
@@ -7101,7 +7101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestInit
   boatPrefab: {fileID: 1514245441825870664, guid: 836d6688115d34747871645369d4dccb, type: 3}
-  playerCount: 2
+  playerCount: 3
 --- !u!65 &1368640703
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9511,13 +9511,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameHUD
   hpBars:
-  - {fileID: 835270323}
   - {fileID: 994616989}
+  - {fileID: 835270323}
   - {fileID: 951130353}
   - {fileID: 512354675}
   playerLabels:
-  - {fileID: 1731840290}
   - {fileID: 389765320}
+  - {fileID: 1731840290}
   - {fileID: 982530140}
   - {fileID: 927378617}
   countdownText: {fileID: 1249529122}
