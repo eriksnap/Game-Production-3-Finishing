@@ -47,9 +47,7 @@ public class LobbyManager : MonoBehaviour
                 playerIndex = i,
                 selectedBoatPrefab = boatPrefab,
                 selectedCharacterPrefab = null,
-                assignedDevice = i == 0 && Gamepad.all.Count > 0
-                    ? Gamepad.all[0]
-                    : null //Player 2 gets null, falls back to keyboard
+                assignedDevice = i < Gamepad.all.Count ? Gamepad.all[i] : null
             };
 
             playerDataList.Add(data);
