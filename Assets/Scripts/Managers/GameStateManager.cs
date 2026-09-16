@@ -19,6 +19,7 @@ public class GameStateManager : MonoBehaviour
 
     [Header("Scene Names")]
     public string lobbySceneName = "LobbyScene";
+    public string mainMenuSceneName = "MainMenuScene";
 
     [Header("UI")]
     public GameHUD gameHUD;
@@ -35,6 +36,7 @@ public class GameStateManager : MonoBehaviour
         winnerIndex = -1;
 
         gameHUD?.InitialiseHUD(spawnedBoats.Count);
+        gameHUD?.UpdateScoreboard(ScoreManager.Instance != null ? ScoreManager.Instance.BuildScoreboardText(spawnedBoats.Count): "");
         SetAllBoatsActive(false);
         StartCoroutine(CountdownRoutine());
     }
@@ -91,6 +93,7 @@ public class GameStateManager : MonoBehaviour
         if (remaining.Count == 1)
         {
             winnerIndex = remaining[0];
+            ScoreManager.Instance?.AddWin(winnerIndex);
             StartCoroutine(GameOverRoutine());
         }
         else if (remaining.Count == 0)
@@ -111,9 +114,25 @@ public class GameStateManager : MonoBehaviour
         else
             gameHUD?.ShowDraw();
 
+        int matchWinner = -1;
+        bool matchOver = ScoreManager.Instance != null && ScoreManager.Instance.HasMatchWinner(out matchWinner);
+
+        if (matchOver)
+            gameHUD?.ShowMatchWinner(matchWinner);
+
         yield return new WaitForSeconds(gameOverDisplayDuration);
 
-        ReturnToLobby();
+        if (matchOver)
+        {
+            ScoreManager.Instance.ResetMatch();
+            LobbyManager.ClearPlayerData();
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
+        else
+        {
+            if (ScoreManager.Instance != null) ScoreManager.Instance.currentRound++;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // next round, same players
+        }
     }
 
     private void SetAllBoatsActive(bool active)
@@ -129,12 +148,6 @@ public class GameStateManager : MonoBehaviour
             if (input != null) input.enabled = active;
         }
     }
-
-    private void ReturnToLobby()
-    {
-        SceneManager.LoadScene(lobbySceneName);
-    }
-
     public GameState GetCurrentState() => currentState;
     public int GetWinnerIndex() => winnerIndex;
 }

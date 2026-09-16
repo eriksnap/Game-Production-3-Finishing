@@ -17,6 +17,9 @@ public class GameHUD : MonoBehaviour
     [Header("Eliminated")]
     public TextMeshProUGUI eliminatedText;
 
+    [Header("Scoreboard")]
+    public TextMeshProUGUI scoreboardText;
+
     private void Start()
     {
         HideCountdown();
@@ -85,6 +88,13 @@ public class GameHUD : MonoBehaviour
         countdownText.text = value > 0 ? value.ToString() : "GO!";
     }
 
+    public void UpdateScoreboard(string text)
+    {
+        if (scoreboardText == null) return;
+        scoreboardText.gameObject.SetActive(true);
+        scoreboardText.text = text;
+    }
+
     public void HideCountdown()
     {
         if (countdownText == null) return;
@@ -124,5 +134,13 @@ public class GameHUD : MonoBehaviour
     {
         if (gameOverText == null) return;
         gameOverText.gameObject.SetActive(false);
+    }
+
+    public void ShowMatchWinner(int playerIndex)
+    {
+        if (gameOverText == null) return;
+        gameOverText.gameObject.SetActive(true);
+        gameOverText.text = $"Player {playerIndex + 1} Wins the Match!";
+        gameOverText.color = PlayerColours.Get(playerIndex);
     }
 }
